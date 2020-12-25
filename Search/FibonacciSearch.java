@@ -11,7 +11,7 @@ public class FibonacciSearch {
     public static int maxSize = 20;
 
     public static void main(String[] args) {
-        int[] arr = {1, 10, 89, 1000, 1234};
+        int[] arr = {1, 8, 10, 89, 1000,1234};
         int[] fib = fibGenerator(maxSize);
         int index = fibonacciSearch(arr, 1234, fib);
         System.out.println(index);
@@ -35,16 +35,16 @@ public class FibonacciSearch {
     public static int fibonacciSearch(int[] arr, int value, int[] fib) {
         // 首先找到最接近数组长度且大于数组长度的斐波那契元素
         int k = 0;
-        while (arr.length > fib[k] - 1) {
+        while (arr.length > fib[k]) {
             k++;
         }
         // 将原数组填充成fib[k] 长度的数组,这里接用Arrays类实现,填充的元素均是0,将其全变为数组最右端的值
-        int[] temp = Arrays.copyOf(arr, fib[k]);
+        int[] temp = Arrays.copyOf(arr, fib[k]);  //  此处到底是fib[k]还是fib[k] - 1 待确定
         for (int i = arr.length; i < temp.length; i++) {
             temp[i] = arr[arr.length - 1];
         }
         int left = 0;
-        int right = temp.length - 1;
+        int right = arr.length -1;
         // 循环终止条件:left > right
         while (left <= right) {
             int mid = left + fib[k - 1] - 1;
@@ -66,3 +66,4 @@ public class FibonacciSearch {
         return -1;
     }
 }
+
