@@ -37,7 +37,8 @@ class HashTable {
         int index = hashPosition(emp);
         linkedListArr[index].add(emp);
     }
-
+    
+    // 散列函数,此处直接用取模的方式获取散列值
     private int hashPosition(EmployeeNode emp) {
         return emp.id % size;
     }
